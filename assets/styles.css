@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap");
+:root {
+  --prevision-primary: #19293c;
+  --prevision-secondary: #fd7c34;
+  --prevision-tertiary: #4ba5d8;
+
+  --lighter-grey: #c0bebb;
+  --base-grey: #e5e5e5;
+  --darkest-grey: #4c4c4c;
+  --spacing-unit: 10px;
+
+  --color-danger: #fd4134;
+  --color-warning: #fd7c34;
+  --color-confident: #97c44e;
+  --color-perfect: #4ba5d8;
+  --button-size: 175px;
+}
+
+body {
+  background-color: var(--prevision-primary);
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+}
+
+
+h3 {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 24px;
+  color: var(--prevision-secondary);
+}
+
+em {
+  font-weight: bold;
+  line-height: 2em;
+}
+
+header {
+  background-color: var(--prevision-primary);
+  border-bottom: 2px solid var(--lighter-grey);
+}
+
+#links {
+  background-color: var(--base-grey);
+}
+
+#links > nav {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: 0em;
+  color: var(--prevision-primary);
+  padding-top: 10px;
+  text-align: center;
+}
+
+#links > nav:hover {
+  filter: invert(55%) sepia(90%) saturate(2480%) hue-rotate(340deg) brightness(101%) contrast(99%);
+}
+
+
+main {
+  background: var(--prevision-primary);
+}
+
+aside {
+  border-left: dotted var(--prevision-secondary) 1px;
+  padding: 2em;
+}
+
+
+a {
+  color: var(--prevision-tertiary);
+  text-decoration: none; /* no underline */
+}
+
+footer a {
+  color: var(--prevision-primary);
+  text-decoration: none; /* no underline */
+}
+
+
+/* The rec Card */
+
+figure {
+  margin-top: 1em;  ;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  box-shadow: 10px 10px 22px #333;
+  border-radius: 20px;
+}
+
+figure img {
+  width: 25%;
+  object-fit: cover;
+  margin: 3%;
+}
+
+figure figcaption{
+  flex: 2;
+  margin: 10%;
+}
+
+figure h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+figure p {
+  text-align: left;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+}
+
+figure a {
+  color: var(--prevision-primary);
+  text-decoration: none; /* no underline */
+}
+/* End REC Cards */
+

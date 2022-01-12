@@ -1,0 +1,113 @@
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 12px;
+  }
+  
+  section {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  
+  #links {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  #links > nav {
+    width: 33%;
+  }
+  
+  
+  h1 {
+    font-size: 18px;
+  }
+  
+  h2 {
+    font-size: 40px;
+    font-weight: 100;
+  }
+  
+  #container {
+    height: calc(100vh - calc(100vh - 100%));
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  header {
+    flex: 1;
+  }
+  
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: start;
+  }
+  
+
+  footer {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    justify-content: flex-end;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+    gap: 10px;
+  }
+  
+  .hidden {
+    display: none !important; /*hidden is hidden*/
+  }
+  
+  
+  @media only screen and (min-device-width: 300px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    aside {
+      display: none;
+    }
+  
+    main {
+      width: 80%;
+      margin: auto;
+      height: 100%;
+    }
+    header {
+      display: none;
+    }
+  }
+  
+  @media screen and (min-device-width: 667px) and (max-device-width: 2600px) {
+    main {
+      flex: 2;
+      height: 80vh;
+    }
+  
+  
+    footer {
+      display: none;
+    }
+    aside {
+      flex: 3;
+    }
+  }
+  
+  .vertical-panelling {
+    flex: 18;
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: start;
+  }
