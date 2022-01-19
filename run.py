@@ -15,21 +15,22 @@ dashboard = dash.Dash(__name__)
 res = model.predict_query("some text")
 print(res)
 
+df = pd.DataFrame({
+    "Candidates": [candidate["name"] for candidate in res["predictions"]],
+    "Similarity": [candidate["similarity"] for candidate in res["predictions"]],
+
+})
 
 # Define the app Layout here
 dashboard.title = 'Analytics Dashboard'
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
-df = pd.DataFrame({
-    "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
-    "Amount": [4, 1, 2, 2, 4, 5],
-    "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
-})
 
-fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
+
+fig = px.bar(df, x="Candidates", y="Similarity", barmode="group")
 
 panelling = html.Div([html.Main(children= "form"), html.Aside(children=    dcc.Graph(
-        id='example-graph',
+        id='barchart',
         figure=fig
     ),)], className='vertical-panelling')
 content = html.Div([html.Header, panelling, html.Footer], id="container")
