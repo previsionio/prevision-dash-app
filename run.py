@@ -54,6 +54,8 @@ dashboard.layout = html.Div(children=[
     html.Footer(children="Copyright")
 ], id="container")
 
+
+# A callback that listn to form submit and call the model
 def init_callbacks(dash_app):
     @dashboard.callback(
     Output('barchart', 'figure'),
