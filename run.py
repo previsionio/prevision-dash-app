@@ -12,8 +12,8 @@ from services import model
 dashboard = dash.Dash(__name__) 
 
 # just  a test
-
-res = model.predict_query("some text")
+default_text="j'aime la France"
+res = model.predict_query(default_text)
 print(res)
 
 df = pd.DataFrame({
@@ -34,7 +34,7 @@ form = html.Div([
     html.H3("Texte prononcé"),
     html.Div([
         "Texte: ",
-        dcc.Textarea(id='my-input', value="J'aime la France")
+        dcc.Textarea(id='src-txt', value=default_text  )
     ]),
     html.Button('Submit', id='submit-val', n_clicks=0)    
 
@@ -58,7 +58,7 @@ def init_callbacks(dash_app):
     @dashboard.callback(
     Output('barchart', 'figure'),
     Input('submit-val', 'n_clicks'),
-    State('my-input', 'value')    
+    State('src-txt', 'value')    
     )
     def update_graph(n_clicks, value):
         res = model.predict_query(value)
