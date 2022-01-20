@@ -82,6 +82,10 @@ Moreover, you should try your app with the -w 2 option to be sure that it is tru
 
 ## Calling the model
 
+If you want to use a Model hosted on prevision platform, you need to initialize a request-oauthlib client. Do it in the `services/model`file.
+
+You should have your credentials in a .env file 
+
 ```python
 
 load_dotenv()
@@ -93,11 +97,11 @@ client = BackendApplicationClient(client_id=client_id)
 
 ```
 
+Then write a function that send the form data as a `POST` request json payload. Here the model has only one feature, `text` but you need to change this accordong to your model feature
 
 ```python
 def send(text):
-    logging.info(">" * 66)
-    logging.info("send")
+
     try:
         predict_url = f"{model_url}/predict"
 
@@ -106,7 +110,6 @@ def send(text):
         })
         headers = {'Content-Type': 'application/json'}
 
-        logging.info(payload)
         oauth = OAuth2Session(client=client)
         oauth.fetch_token(
             token_url=
@@ -117,9 +120,10 @@ def send(text):
         prediction = oauth.post(predict_url, headers=headers, data=payload)
         res = prediction
         data=res.json()
-        logging.info(data)
+
+        # You can transform the response to help the client
         pred = transformres(data)
-        logging.info("<" * 66)
+        
         return pred
     except ConnectionError:
         logging.error("Cannot call model")
@@ -127,6 +131,8 @@ def send(text):
 ```
 
 ## Building the Dashboard
+
+The dashboard is a basic interactive app  with a form and a chart. When submit button event is triggererd, the state of the form is send to the model and the response is use to update chart data 
 
 ```python
 # Initialise the app 
@@ -145,9 +151,6 @@ df = pd.DataFrame({
 
 # Define the app Layout here
 dashboard.title = 'Analytics Dashboard'
-# assume you have a "long-form" data frame
-# see https://plotly.com/python/px-arguments/ for more options
-
 
 fig = px.bar(df, x="Candidates", y="Similarity", barmode="group")
 
@@ -201,8 +204,20 @@ app = dashboard.server
 
 ## Deploying the app in prevision env
 
+Once everything works locally, put your code into your repo. 
+
+You need to give authorization to Prevision.io platform.  Connect to Prevision.io and go to `profile > federated identity`. add you gitlab or github repo then :
+
+
+Go to `Deployments > Deployment applications`. Click 'create application'
+
 ![img](img/new_app.png)
 
+Fill the form. Plotly is a python framework so choose `python` as programming language. Select your repo and folder
 ![img](img/setup1.png)
 
+Do not forget to create 3 env variable and fill them with your credentials ( or more if you add some to your project)
 ![img](img/setup_2.png)
+
+
+Click Deploy button and wait. Your application should be available in a few minutes, to the url provided in the interface. If something failed, error logs are available in the `log`tab of the deployment page.
