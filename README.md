@@ -69,6 +69,8 @@ Your app must work the following option :
 
 `gunicorn --bind 0.0.0.0:8080  --threads 10 -w 2 --timeout 120 --limit-request-line 0 --access-logfile - run:app`
 
+(*if you work on windows setup you can use waitress server instead*)
+
 Check that you "main" file is named `run.py` and that the dash app server is bind to the app variable :
 
 ```
